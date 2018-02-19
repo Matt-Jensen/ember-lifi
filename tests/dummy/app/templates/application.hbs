@@ -1,3 +1,7 @@
-<h2 id="title">Welcome to Ember</h2>
+{{#if supported}}
+  <h2>You're {{if online "online 😄" "offline 😭"}}</h2>
+{{else}}
+  <h2>Online detection <i>NOT</i> supported by environment</h2>
+{{/if}}
 
 {{outlet}}

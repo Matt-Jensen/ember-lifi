@@ -1,20 +1,19 @@
 {
   "name": "ember-lifi",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
-  "keywords": [
-    "ember-addon"
-  ],
+  "description": "Service for detecting internet connection status",
+  "keywords": ["ember-addon", "offline", "connection", "internet", "wifi"],
   "license": "MIT",
-  "author": "",
+  "author": "Matt-Jensen",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "repository": "https://github.com/matt-jensen/ember-lifi",
   "scripts": {
     "build": "ember build",
-    "lint:js": "eslint ./*.js addon addon-test-support app config lib server test-support tests",
+    "lint:js":
+      "eslint ./*.js addon addon-test-support app config lib server test-support tests",
     "start": "ember serve",
     "test": "ember try:each"
   },
@@ -26,7 +25,7 @@
     "ember-ajax": "^3.0.0",
     "ember-cli": "~3.0.0",
     "ember-cli-dependency-checker": "^2.0.0",
-    "ember-cli-eslint": "^4.2.1",
+    "ember-cli-eslint": "4",
     "ember-cli-htmlbars": "^2.0.1",
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-cli-inject-live-reload": "^1.4.1",
@@ -42,9 +41,12 @@
     "ember-source": "~3.0.0",
     "ember-source-channel-url": "^1.0.1",
     "ember-try": "^0.2.23",
-    "eslint-plugin-ember": "^5.0.0",
-    "eslint-plugin-node": "^5.2.1",
-    "loader.js": "^4.2.3"
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-ember": "^5.0.3",
+    "eslint-plugin-ember-suave": "^1.0.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "loader.js": "^4.2.3",
+    "prettier": "^1.10.2"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"

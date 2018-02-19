@@ -1,30 +1,43 @@
-ember-lifi
-==============================================================================
+# ember-lifi[![Build Status](https://travis-ci.org/Matt-Jensen/ember-lifi.svg?branch=master)](https://travis-ci.org/Matt-Jensen/ember-lifi) [![Ember Observer Score](http://emberobserver.com/badges/ember-lifi.svg)](http://emberobserver.com/addons/ember-lifi)
 
-[Short description of the addon.]
+A small service for reacting to a device's changing internet connection
 
-Installation
-------------------------------------------------------------------------------
+## Installation
 
 ```
 ember install ember-lifi
 ```
 
+## Usage
 
-Usage
-------------------------------------------------------------------------------
+```js
+export default Component.extend({
+  lifi: service(),
+  isOnline: reads('lifi.isOnline'), // preferred
 
-[Longer description of how to use the addon in apps.]
+  didInsertElement() {
+    this._super(...arguments);
 
+    // Optionally
+    this.on('offline', () => {
+      alert(`The end is nigh!`);
+    });
 
-Contributing
-------------------------------------------------------------------------------
+    this.on('online', () => {
+      alert('False alarm');
+    });
+  }
+});
+```
+
+## Contributing
 
 ### Installation
 
 * `git clone <repository-url>`
 * `cd ember-lifi`
-* `npm install`
+* `nvm use`
+* `yarn`
 
 ### Linting
 
@@ -44,7 +57,6 @@ Contributing
 
 For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
 
-License
-------------------------------------------------------------------------------
+## License
 
 This project is licensed under the [MIT License](LICENSE.md).
