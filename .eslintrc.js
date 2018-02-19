@@ -11,10 +11,13 @@ module.exports = {
   plugins: ['ember', 'prettier', 'ember-suave'],
   rules: {
     // Formatting
-    'prettier/prettier': ['error', { singleQuote: true }],
+    'prettier/prettier': [
+      'error',
+      { singleQuote: true, arrowParens: 'as-needed' }
+    ],
 
     // ES6
-    'arrow-parens': ['error', 'always'],
+    'arrow-parens': 0,
     'generator-star-spacing': [
       'error',
       {
