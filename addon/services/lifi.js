@@ -2,9 +2,9 @@ import Service from '@ember/service';
 import { get, set } from '@ember/object';
 import { assert } from '@ember/debug';
 import { computed } from '@ember/object';
-import LifiEvents from '../mixins/events';
+import Evented from '@ember/object/evented';
 
-export default Service.extend(LifiEvents, {
+export default Service.extend(Evented, {
   /**
    * Is online detection supported
    * @type {Boolean}
@@ -34,8 +34,26 @@ export default Service.extend(LifiEvents, {
   init() {
     this._super(...arguments);
 
-    // Apply updates from global online/offline events
-    this.on('online', set.bind(this, this, 'isOnline', true));
-    this.on('offline', set.bind(this, this, 'isOnline', false));
+    if (get(this, 'isSupported')) {
+      // Setup event listers
+      window.addEventListener('online', this.trigger.bind(this, 'online'));
+      window.addEventListener('offline', this.trigger.bind(this, 'offline'));
+
+      // Apply updates from global online/offline events
+      this.on('online', this._updateOnline.bind(this, 'online'));
+      this.on('offline', this._updateOnline.bind(this, 'offline'));
+    }
+  },
+
+  /**
+   * Update `isOnline` from status
+   * @param {String} status
+   */
+  _updateOnline(status) {
+    assert(['online', 'offline'].includes(status), 'has valid status');
+
+    if (!get(this, 'isDestroyed')) {
+      set(this, 'isOnline', status === 'online');
+    }
   }
 });
