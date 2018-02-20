@@ -10,17 +10,25 @@ ember install ember-lifi
 
 ## Usage
 
+Service
 ```js
-export default Component.extend({
+export default Component.extend(LifiEvents, {
   lifi: service(),
-  isOnline: reads('lifi.isOnline'), // preferred
+  isOnline: reads('lifi.isOnline')
+});
+```
 
+Events
+```js
+import LifiEvents from 'ember-lifi/mixins/events';
+
+export default Component.extend(LifiEvents, {
   didInsertElement() {
     this._super(...arguments);
 
     // Optionally
     this.on('offline', () => {
-      alert(`The end is nigh!`);
+      alert('The end is nigh!');
     });
 
     this.on('online', () => {
