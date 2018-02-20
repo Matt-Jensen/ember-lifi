@@ -1,6 +1,6 @@
 {
   "name": "ember-lifi",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Service for detecting internet connection status",
   "keywords": ["ember-addon", "offline", "connection", "internet", "wifi"],
   "license": "MIT",
