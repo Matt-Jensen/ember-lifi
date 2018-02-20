@@ -1,6 +1,6 @@
-# ember-lifi[![Build Status](https://travis-ci.org/Matt-Jensen/ember-lifi.svg?branch=master)](https://travis-ci.org/Matt-Jensen/ember-lifi) [![Ember Observer Score](http://emberobserver.com/badges/ember-lifi.svg)](http://emberobserver.com/addons/ember-lifi)
+# ember-lifi [![Build Status](https://travis-ci.org/Matt-Jensen/ember-lifi.svg?branch=master)](https://travis-ci.org/Matt-Jensen/ember-lifi) [![Ember Observer Score](http://emberobserver.com/badges/ember-lifi.svg)](http://emberobserver.com/addons/ember-lifi) [![Code Climate](https://codeclimate.com/github/Matt-Jensen/ember-lifi/badges/gpa.svg)](https://codeclimate.com/github/Matt-Jensen/ember-lifi)
 
-A small service for reacting to a device's changing internet connection
+A small service for detecting internet connection
 
 ## Installation
 
@@ -10,8 +10,12 @@ ember install ember-lifi
 
 ## Usage
 
-Service
+Basic
+
 ```js
+import { inject as service } from '@ember/service';
+import { reads } from '@ember/object/computed';
+
 export default Component.extend({
   lifi: service(),
   isOnline: reads('lifi.isOnline')
@@ -19,19 +23,21 @@ export default Component.extend({
 ```
 
 Events
-```js
-import LifiEvents from 'ember-lifi/mixins/events';
 
-export default Component.extend(LifiEvents, {
+```js
+import { inject as service } from '@ember/service';
+
+export default Component.extend({
+  lifi: service(),
+
   didInsertElement() {
     this._super(...arguments);
 
-    // Optionally
-    this.on('offline', () => {
+    this.get('lifi').on('offline', () => {
       alert('The end is nigh!');
     });
 
-    this.on('online', () => {
+    this.get('lifi').on('online', () => {
       alert('False alarm');
     });
   }
