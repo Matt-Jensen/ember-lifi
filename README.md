@@ -12,7 +12,7 @@ ember install ember-lifi
 
 Service
 ```js
-export default Component.extend(LifiEvents, {
+export default Component.extend({
   lifi: service(),
   isOnline: reads('lifi.isOnline')
 });
